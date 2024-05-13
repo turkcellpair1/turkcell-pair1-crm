@@ -9,12 +9,14 @@
         <module name="gatewayserver" />
         <module name="discoveryserver" />
         <module name="configserver" />
+        <module name="customerservice" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="configserver" options="-parameters" />
+      <module name="customerservice" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="gatewayserver" options="-parameters" />
     </option>
