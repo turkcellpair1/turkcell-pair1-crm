@@ -6,5 +6,9 @@ spring:
       server:
         git:
           uri: https://github.com/turkcellpair1/turkcell-pair1-crm-configurations
+
+
+# this section shouldn't be changed
+configUrl: http://localhost:8079
 server:
   port: 8079
