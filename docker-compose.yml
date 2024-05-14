@@ -1,0 +1,114 @@
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=crm
+    volumes:
+      - postgresql-volume:/var/lib/postgresql/data
+    networks:
+      - crm
+  config-server:
+    build: ./configserver
+    ports:
+      - "8079:8079"
+    networks:
+      - crm
+    restart: on-failure
+  discovery-server:
+    build: ./discoveryserver
+    ports:
+      - "8888:8888"
+    networks:
+      - crm
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    restart: on-failure
+
+  gateway-server:
+    build: ./gatewayserver
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+  customer-service:
+    build: ./customerservice
+    ports:
+      - "8082:8082"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+
+  product-service:
+    build: ./productservice
+    ports:
+      - "8083:8083"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+
+  order-service:
+    build: ./orderservice
+    ports:
+      - "8084:8084"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+
+  bill-service:
+    build: ./billservice
+    ports:
+      - "8085:8085"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+
+volumes:
+  postgresql-volume:
+    name: postgresql-crm
+
+
+networks:
+  crm:
+    driver: bridge
