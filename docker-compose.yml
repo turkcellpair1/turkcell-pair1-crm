@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres
     ports:
-      - "5433:5433"
+      - "5433:5432"
     environment:
       - POSTGRES_PASSWORD=12345
       - POSTGRES_USER=postgres
@@ -37,6 +37,20 @@ services:
     depends_on:
       - config-server
       - discovery-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+  customer-service:
+    build: ./customerservice
+    ports:
+      - "8082:8082"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
     environment:
       - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
       - CONFIGURL=http://config-server:8079
