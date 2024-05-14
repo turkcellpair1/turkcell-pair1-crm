@@ -4,5 +4,5 @@ COPY . /app/
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk
-COPY --from=build /app/target/billservice-0.0.1-SNAPSHOT.jar /app/bilservice.jar
+COPY --from=build /app/target/billservice-0.0.1-SNAPSHOT.jar /app/billservice.jar
 CMD java -jar /app/billservice.jar
