@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: authserver
+  cloud:
+    config:
+      # Profile field can be changed based on the person
+      profile: local-ibrahim
+  config:
+    import: "optional:configserver:${configUrl}/"
+
+configUrl: http://localhost:8079
+
