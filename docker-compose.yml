@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=crm
+    volumes:
+      - postgresql-volume:/var/lib/postgresql/data
+    networks:
+      - crm
+  config-server:
+    build: ./configserver
+    ports:
+      - "8079:8079"
+    networks:
+      - crm
+  discovery-server:
+    build: ./discoveryserver
+    ports:
+      - "8888:8888"
+    networks:
+      - crm
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    restart: on-failure
+  gateway-server:
+    build: ./gatewayserver
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker-ibrahim
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - crm
+
+
+volumes:
+  postgresql-volume:
+    name: postgresql-crm
+
+
+networks:
+  crm:
+    driver: bridge
