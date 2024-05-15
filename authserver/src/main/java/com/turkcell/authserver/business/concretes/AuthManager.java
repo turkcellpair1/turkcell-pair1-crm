@@ -4,8 +4,8 @@ import com.turkcell.authserver.business.Dto.requests.AddRequestUser;
 import com.turkcell.authserver.business.Dto.requests.GetRequestUser;
 import com.turkcell.authserver.business.abstracts.AuthService;
 import com.turkcell.authserver.business.abstracts.UserService;
-import com.turkcell.authserver.core.services.JwtService;
 import com.turkcell.authserver.entities.User;
+import com.turkcell.core.security.BaseJwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 
@@ -25,7 +25,7 @@ public class AuthManager implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+    private final BaseJwtService jwtService;
 
     @Override
     public void register(AddRequestUser addRequestUser) {
