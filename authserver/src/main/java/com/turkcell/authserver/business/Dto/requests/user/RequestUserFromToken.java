@@ -10,6 +10,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetRequestUserFromToken {
+public class RequestUserFromToken {
     private String token;
 }

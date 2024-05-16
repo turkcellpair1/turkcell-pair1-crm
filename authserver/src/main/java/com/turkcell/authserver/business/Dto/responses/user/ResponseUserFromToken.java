@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetResponseUserFromToken {
+public class ResponseUserFromToken {
     private int id;
     private String email;
     private String role;

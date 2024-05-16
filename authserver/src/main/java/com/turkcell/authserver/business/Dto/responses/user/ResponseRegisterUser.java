@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddResponseUser {
+public class ResponseRegisterUser {
     private int id;
     private String email;
     private String role;

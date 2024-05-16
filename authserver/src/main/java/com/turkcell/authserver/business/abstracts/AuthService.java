@@ -1,14 +1,14 @@
 package com.turkcell.authserver.business.abstracts;
 
-import com.turkcell.authserver.business.Dto.requests.user.AddRequestUser;
-import com.turkcell.authserver.business.Dto.requests.user.GetRequestUser;
-import com.turkcell.authserver.business.Dto.requests.user.GetRequestUserFromToken;
-import com.turkcell.authserver.business.Dto.responses.user.AddResponseUser;
-import com.turkcell.authserver.business.Dto.responses.user.GetResponseUser;
-import com.turkcell.authserver.business.Dto.responses.user.GetResponseUserFromToken;
+import com.turkcell.authserver.business.Dto.requests.user.RequestRegisterUser;
+import com.turkcell.authserver.business.Dto.requests.user.RequestLoginUser;
+import com.turkcell.authserver.business.Dto.requests.user.RequestUserFromToken;
+import com.turkcell.authserver.business.Dto.responses.user.ResponseRegisterUser;
+import com.turkcell.authserver.business.Dto.responses.user.ResponseLoginUser;
+import com.turkcell.authserver.business.Dto.responses.user.ResponseUserFromToken;
 
 public interface AuthService {
-    AddResponseUser register(AddRequestUser addRequestUser);
-    GetResponseUser login(GetRequestUser getRequestUser);
-    GetResponseUserFromToken getUserFromToken(GetRequestUserFromToken getRequestUserFromToken);
+    ResponseRegisterUser registerUser(RequestRegisterUser requestRegisterUser);
+    ResponseLoginUser loginUser(RequestLoginUser requestLoginUser);
+    ResponseUserFromToken userFromToken(RequestUserFromToken requestUserFromToken);
 }
