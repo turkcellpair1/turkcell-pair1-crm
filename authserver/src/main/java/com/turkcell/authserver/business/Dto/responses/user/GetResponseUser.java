@@ -1,5 +1,4 @@
-package com.turkcell.authserver.business.Dto.requests;
-
+package com.turkcell.authserver.business.Dto.responses.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetRequestUser {
+public class GetResponseUser {
+    private int id;
     private String email;
-    private String password;
+    private String role;
+    private String token;
 }

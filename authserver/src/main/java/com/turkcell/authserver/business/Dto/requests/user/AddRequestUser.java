@@ -1,4 +1,4 @@
-package com.turkcell.authserver.business.Dto.requests;
+package com.turkcell.authserver.business.Dto.requests.user;
 
 
 import lombok.*;
@@ -10,4 +10,5 @@ import lombok.*;
 public class AddRequestUser {
     private String email;
     private String password;
+    private String role;
 }

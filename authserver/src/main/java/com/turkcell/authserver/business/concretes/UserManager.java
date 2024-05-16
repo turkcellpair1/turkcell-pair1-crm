@@ -16,12 +16,17 @@ public class UserManager implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public void addUser(User user) {
-        userRepository.save(user);
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username).orElseThrow(() -> new BadCredentialsException(""));
+    }
+
+    @Override
+    public Integer getUserIdByEmail(String email){
+        return userRepository.findByEmail(email).orElseThrow().getId();
     }
 }
