@@ -1,0 +1,12 @@
+# Copy file and changes its extension
+spring:
+  application:
+    name: customerservice
+  cloud:
+    config:
+      # Change the profile name
+      profile: local-yigit
+  config:
+    import: "optional:configserver:${configUrl}/"
+
+configUrl: http://localhost:8079
