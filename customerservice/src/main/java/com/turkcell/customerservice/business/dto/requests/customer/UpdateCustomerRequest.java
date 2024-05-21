@@ -1,17 +1,15 @@
-package com.turkcell.customerservice.business.dto.responses.customer;
-
-import jakarta.persistence.Column;
-
-import java.time.LocalDate;
+package com.turkcell.customerservice.business.dto.requests.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetCustomerByIdResponse {
+public class UpdateCustomerRequest {
     private int id;
     private String firstName;
     private String middleName;
