@@ -19,5 +19,6 @@ public class GetAllCustomersResponse {
     private String motherName;
     private String fatherName;
     private String gender;
+    private boolean status;
     private int user_id;
 }

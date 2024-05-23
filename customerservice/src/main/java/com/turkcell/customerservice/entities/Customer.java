@@ -34,7 +34,8 @@ public class Customer {
     private String fatherName;
     @Column(name = "gender")
     private String gender;
-
+    @Column(name= "status",columnDefinition = "boolean default true")
+    private Boolean status;
     @Column(name = "user_id",unique = true)
     private int user_id;
 

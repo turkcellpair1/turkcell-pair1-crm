@@ -29,6 +29,8 @@ public class Address {
     private String addressDesc;
     @Column(name="default_address")
     private boolean defaultAddress;
+    @Column(name= "status",columnDefinition = "boolean default true")
+    private Boolean status;
 
     @ManyToOne()
     @JoinColumn(name = "customer_id")

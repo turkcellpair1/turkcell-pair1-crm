@@ -25,6 +25,8 @@ public class Contact {
     private String homePhone;
     @Column(name = "fax")
     private String fax;
+    @Column(name= "status",columnDefinition = "boolean default true")
+    private Boolean status;
 
     @OneToOne()
     @JoinColumn(name = "customer_id")

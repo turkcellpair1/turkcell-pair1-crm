@@ -35,12 +35,31 @@ public class CustomerManager implements CustomerService {
     @Override
     public AddCustomerResponse addCustomer(AddCustomerRequest request) {
         Customer customer=CustomerMapper.INSTANCE.addRequestToCustomer(request);
+        customer.setStatus(true);
         return CustomerMapper.INSTANCE.customerToAddResponse(customerRepository.save(customer));
     }
 
     @Override
     public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) {
+        // todo: update KESİN düzeltilmeli
         Customer customer=CustomerMapper.INSTANCE.updateRequestToCustomer(request);
         return CustomerMapper.INSTANCE.customerToUpdateResponse(customerRepository.save(customer));
     }
+
+    @Override
+    public String deleteByIdCustomer(int id) {
+        // todo: işlem başarılı responsu yaz global
+        // Todo: eğer müşteri yoksa hata mesajı ekle
+        Customer customer=customerRepository.findById(id).orElse(null);
+        customer.setStatus(false);
+        customerRepository.save(customer);
+        return "kullanıcı silindi";
+    }
+
+    /*@Override
+    public String deleteCustomer(DeleteCustomerRequest request) {
+
+        CustomerMapper.INSTANCE.deleteRequestToCustomer(request);
+        return "Müşteri silindi";
+    }*/
 }

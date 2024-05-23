@@ -19,24 +19,29 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("{id}")
+    @GetMapping("getById/{id}")
     public GetCustomerByIdResponse getCustomerById(@PathVariable int id){
         return customerService.getCostumerById(id);
     }
 
-    @GetMapping("getAll")
+    @GetMapping("getAllCustomers")
     public List<GetAllCustomersResponse> getAllCustomers(){
         return customerService.getAllCustomers();
     }
 
-    @PostMapping()
+    @PostMapping("addCustomer")
     public AddCustomerResponse addCustomer(@RequestBody AddCustomerRequest request){
         return customerService.addCustomer(request);
     }
 
-    @PutMapping()
+    @PutMapping("updateCustomer")
     public UpdateCustomerResponse updateCustomer(@RequestBody UpdateCustomerRequest request){
         return customerService.updateCustomer(request);
+    }
+
+    @PutMapping("deleteById/{id}")
+    public String deleteByIdCustomer(@PathVariable int id){
+        return customerService.deleteByIdCustomer(id);
     }
 
 }

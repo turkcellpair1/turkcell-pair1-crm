@@ -18,17 +18,23 @@ public interface CustomerMapper {
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
     //GetByID
+    @Mapping(source = "user_id",target = "user_id")
+    @Mapping(source = "status",target = "status")
     GetCustomerByIdResponse customerByIdToGetResponse(Customer customer);
 
     //GetAll
     @Mapping(source = "user_id",target = "user_id")
+    @Mapping(source = "status",target = "status")
     List<GetAllCustomersResponse> customersToGetResponse(List<Customer> customers);
 
     //AddCustomer
     Customer addRequestToCustomer(AddCustomerRequest request);
+    @Mapping(source = "status",target = "status")
     AddCustomerResponse customerToAddResponse(Customer customer);
 
     //UpdateCustomer
     Customer updateRequestToCustomer(UpdateCustomerRequest request);
     UpdateCustomerResponse customerToUpdateResponse(Customer customer);
+
+
 }
