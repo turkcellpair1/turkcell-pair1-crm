@@ -10,9 +10,9 @@ import com.turkcell.customerservice.business.dto.responses.customer.UpdateCustom
 import java.util.List;
 
 public interface CustomerService {
-    GetCustomerByIdResponse getCostumerById(int id);
-    List<GetAllCustomersResponse> getAllCustomers();
     AddCustomerResponse addCustomer(AddCustomerRequest request);
     UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request);
     String deleteByIdCustomer(int id);
+    GetCustomerByIdResponse getCostumerById(int id);
+    List<GetAllCustomersResponse> getAllCustomers();
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class AddCustomerResponse {
     private int id;
     private String firstName;
-    private String middleName;
+    private String lastName;
+    private int user_id;
     private boolean status;
 }

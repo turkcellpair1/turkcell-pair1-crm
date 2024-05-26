@@ -7,9 +7,13 @@ import com.turkcell.customerservice.business.dto.responses.customer.AddCustomerR
 import com.turkcell.customerservice.business.dto.responses.customer.GetAllCustomersResponse;
 import com.turkcell.customerservice.business.dto.responses.customer.GetCustomerByIdResponse;
 import com.turkcell.customerservice.business.dto.responses.customer.UpdateCustomerResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,7 +23,28 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("getById/{id}")
+    @PostMapping()
+    public ResponseEntity<AddCustomerResponse> addCustomer(@RequestBody @Valid AddCustomerRequest request){
+        AddCustomerResponse response = customerService.addCustomer(request);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(response.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(response);
+    }
+
+    @PutMapping()
+    public UpdateCustomerResponse updateCustomer(@RequestBody @Valid UpdateCustomerRequest request){
+        return customerService.updateCustomer(request);
+    }
+
+    @DeleteMapping("deleteById/{id}")
+    public String deleteByIdCustomer(@PathVariable int id){
+        return customerService.deleteByIdCustomer(id);
+    }
+
+    @GetMapping("{id}")
     public GetCustomerByIdResponse getCustomerById(@PathVariable int id){
         return customerService.getCostumerById(id);
     }
@@ -28,20 +53,4 @@ public class CustomerController {
     public List<GetAllCustomersResponse> getAllCustomers(){
         return customerService.getAllCustomers();
     }
-
-    @PostMapping("addCustomer")
-    public AddCustomerResponse addCustomer(@RequestBody AddCustomerRequest request){
-        return customerService.addCustomer(request);
-    }
-
-    @PutMapping("updateCustomer")
-    public UpdateCustomerResponse updateCustomer(@RequestBody UpdateCustomerRequest request){
-        return customerService.updateCustomer(request);
-    }
-
-    @PutMapping("deleteById/{id}")
-    public String deleteByIdCustomer(@PathVariable int id){
-        return customerService.deleteByIdCustomer(id);
-    }
-
 }

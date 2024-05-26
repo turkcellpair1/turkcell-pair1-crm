@@ -22,17 +22,6 @@ public class CustomerManager implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public GetCustomerByIdResponse getCostumerById(int request) {
-        // Todo: eğer müşteri yoksa hata mesajı ekle
-        return CustomerMapper.INSTANCE.customerByIdToGetResponse(customerRepository.findById(request).orElse(null));
-    }
-
-    @Override
-    public List<GetAllCustomersResponse> getAllCustomers() {
-        return CustomerMapper.INSTANCE.customersToGetResponse(customerRepository.findAll());
-    }
-
-    @Override
     public AddCustomerResponse addCustomer(AddCustomerRequest request) {
         Customer customer=CustomerMapper.INSTANCE.addRequestToCustomer(request);
         customer.setStatus(true);
@@ -54,6 +43,18 @@ public class CustomerManager implements CustomerService {
         customer.setStatus(false);
         customerRepository.save(customer);
         return "kullanıcı silindi";
+    }
+
+
+    @Override
+    public GetCustomerByIdResponse getCostumerById(int request) {
+        // Todo: eğer müşteri yoksa hata mesajı ekle
+        return CustomerMapper.INSTANCE.customerByIdToGetResponse(customerRepository.findById(request).orElse(null));
+    }
+
+    @Override
+    public List<GetAllCustomersResponse> getAllCustomers() {
+        return CustomerMapper.INSTANCE.customersToGetResponse(customerRepository.findAll());
     }
 
     /*@Override

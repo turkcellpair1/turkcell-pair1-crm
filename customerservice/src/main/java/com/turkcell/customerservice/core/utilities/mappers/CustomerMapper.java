@@ -29,6 +29,7 @@ public interface CustomerMapper {
 
     //AddCustomer
     Customer addRequestToCustomer(AddCustomerRequest request);
+    @Mapping(source = "user_id",target = "user_id")
     @Mapping(source = "status",target = "status")
     AddCustomerResponse customerToAddResponse(Customer customer);
 
