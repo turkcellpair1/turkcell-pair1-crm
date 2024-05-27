@@ -14,7 +14,7 @@ public class BirthDateValidator implements ConstraintValidator<ValidBirthDate, L
     @Override
     public boolean isValid(LocalDate birthDate, ConstraintValidatorContext context) {
         if (birthDate == null) {
-            return false;
+            return true;
         }
 
         LocalDate now = LocalDate.now();

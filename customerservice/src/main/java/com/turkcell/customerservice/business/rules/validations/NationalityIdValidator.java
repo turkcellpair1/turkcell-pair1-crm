@@ -11,7 +11,10 @@ public class NationalityIdValidator implements ConstraintValidator<ValidNational
 
     @Override
     public boolean isValid(String nationalityId, ConstraintValidatorContext context) {
-        if (nationalityId == null || !nationalityId.matches("^[1-9][0-9]{10}$")) {
+        if (nationalityId == null) {
+            return true;
+        }
+        if (!nationalityId.matches("^[1-9][0-9]{10}$")) {
             return false;
         }
 
