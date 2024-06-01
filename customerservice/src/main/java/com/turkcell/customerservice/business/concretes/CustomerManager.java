@@ -38,24 +38,16 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) {
-        // Todo: eğer müşteri pasifse hata mesajı ekle
-        /*if(customerRepository.findByIdAndStatusTrue(request.getId())==null){
-            throw new RuntimeException("aaaa");
-        }*/
         customerBusinessRules.checkIfNationalityIdExist(request.getNationalityId());
-        customerBusinessRules.checkIfUserIdExist(request.getUser_id());
-        return customerRepository.findById(request.getId()).map(customer -> {
+        //customerBusinessRules.checkIfUserIdExist(request.getUser_id());
+        return customerRepository.findByIdAndStatusTrue(request.getId()).map(customer -> {
             NullAwareBeanUtils.copyNonNullProperties(request,customer);
             return CustomerMapper.INSTANCE.customerToUpdateResponse(customerRepository.save(customer));
                 }).orElseThrow(() -> new BusinessException("No user was found for this id. Transaction failed."));
-        /*Customer customer=CustomerMapper.INSTANCE.updateRequestToCustomer(request);
-        return CustomerMapper.INSTANCE.customerToUpdateResponse(customerRepository.save(customer));*/
     }
 
     @Override
     public String deleteByIdCustomer(int id) {
-        // Todo: işlem başarılı responsu yaz global
-        // Todo: eğer müşteri pasifse hata mesajı ekle
         Customer customer=customerRepository.findByIdAndStatusTrue(id).orElseThrow(() -> new BusinessException("No user was found for this id. Transaction failed."));
         customer.setStatus(false);
         customerRepository.save(customer);
@@ -65,13 +57,11 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public GetCustomerByIdResponse getCostumerById(int request) {
-        // Todo: eğer müşteri pasifse hata mesajı ekle
         return CustomerMapper.INSTANCE.customerByIdToGetResponse(customerRepository.findByIdAndStatusTrue(request).orElseThrow(() -> new BusinessException("No user was found for this id.")));
     }
 
     @Override
     public List<GetAllCustomersResponse> getAllCustomers() {
         return CustomerMapper.INSTANCE.customersToGetResponse(customerRepository.findByStatusTrue());
-        //return CustomerMapper.INSTANCE.customersToGetResponse(customerRepository.findAll());
     }
 }

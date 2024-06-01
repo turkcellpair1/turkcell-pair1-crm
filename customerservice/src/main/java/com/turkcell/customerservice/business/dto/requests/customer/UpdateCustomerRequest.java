@@ -44,5 +44,5 @@ public class UpdateCustomerRequest {
     private String fatherName;
     @Pattern(regexp = "(?i)male|female", message = "Gender must be either 'Male' or 'Female'")
     private String gender;
-    private int user_id;
+    //private int user_id;
 }
