@@ -18,7 +18,7 @@ public class Account {
     @Column(name = "id")
     private int id;
     @Column(name = "account_number")
-    private String accountNumber;
+    private int accountNumber;
     @Column(name = "account_status")
     private String accountStatus;
     @Column(name = "account_name")

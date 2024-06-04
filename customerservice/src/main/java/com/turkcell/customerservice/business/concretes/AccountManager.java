@@ -36,12 +36,16 @@ public class AccountManager implements AccountService {
         }
 
         Account account=AccountMapper.INSTANCE.addRequestToAccount(request);
-        long timestamp = Instant.now().toEpochMilli();
+        /*long timestamp = Instant.now().toEpochMilli();
         int randomSuffix = random.nextInt(1000);
 
-        String uniqueNumber = timestamp + String.format("%03d", randomSuffix);
+        String uniqueNumber = timestamp + String.format("%03d", randomSuffix);*/
+        long timestamp = Instant.now().toEpochMilli();
+        int randomSuffix = random.nextInt(1000);
+        int truncatedTimestamp = (int) (timestamp % 1000000000L);
+        int uniqueNumber = -(truncatedTimestamp * 1000 + randomSuffix);
         account.setAccountNumber(uniqueNumber);
-        account.setAccountName(uniqueNumber);
+        account.setAccountName(String.valueOf(uniqueNumber));
         account.setAccountStatus("F");
         account.setAccountType("Fatura adresi");
         account.setStatus(true);

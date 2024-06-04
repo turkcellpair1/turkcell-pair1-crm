@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddAccountResponse {
     private int id;
-    private String accountNumber;
+    private int accountNumber;
     private String accountStatus;
     private String accountName;
     private String accountType;
