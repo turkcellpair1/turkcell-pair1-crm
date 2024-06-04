@@ -27,6 +27,9 @@ public class Account {
     private String accountType;
     @Column(name= "status",columnDefinition = "boolean default true")
     private Boolean status;
+    @Column(name = "account_desc")
+    private String accountDesc;
+
 
     @ManyToOne()
     @JoinColumn(name = "address_info_id")

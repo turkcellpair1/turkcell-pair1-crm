@@ -1,7 +1,6 @@
 package com.turkcell.customerservice.dataAccess;
 
 import com.turkcell.customerservice.entities.Address;
-import com.turkcell.customerservice.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

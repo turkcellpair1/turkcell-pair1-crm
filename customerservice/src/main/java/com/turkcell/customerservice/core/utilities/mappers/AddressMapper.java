@@ -1,7 +1,7 @@
 package com.turkcell.customerservice.core.utilities.mappers;
 
 import com.turkcell.customerservice.business.dto.requests.address.AddAddressRequest;
-import com.turkcell.customerservice.business.dto.requests.customer.UpdateCustomerRequest;
+import com.turkcell.customerservice.business.dto.requests.address.UpdateAddressRequest;
 import com.turkcell.customerservice.business.dto.responses.address.*;
 import com.turkcell.customerservice.entities.Address;
 import org.mapstruct.BeanMapping;
@@ -24,7 +24,7 @@ public interface AddressMapper {
 
     //UpdateAddress
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Address updateRequestToAddress(UpdateCustomerRequest request);
+    Address updateRequestToAddress(UpdateAddressRequest request);
     @Mapping(source = "customer.id",target = "customerId")
     UpdateAddressResponse addressToUpdateResponse(Address address);
 

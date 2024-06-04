@@ -4,7 +4,6 @@ import com.turkcell.customerservice.business.abstracts.AddressService;
 import com.turkcell.customerservice.business.dto.requests.address.AddAddressRequest;
 import com.turkcell.customerservice.business.dto.requests.address.UpdateAddressRequest;
 import com.turkcell.customerservice.business.dto.responses.address.*;
-import com.turkcell.customerservice.business.dto.responses.customer.AddCustomerResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
