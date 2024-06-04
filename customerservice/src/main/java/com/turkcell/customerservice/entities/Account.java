@@ -29,6 +29,10 @@ public class Account {
     private Boolean status;
 
     @ManyToOne()
+    @JoinColumn(name = "address_info_id")
+    private Address address;
+
+    @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
