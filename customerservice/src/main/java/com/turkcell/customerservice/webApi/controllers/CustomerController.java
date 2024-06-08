@@ -3,10 +3,7 @@ package com.turkcell.customerservice.webApi.controllers;
 import com.turkcell.customerservice.business.abstracts.CustomerService;
 import com.turkcell.customerservice.business.dto.requests.customer.AddCustomerRequest;
 import com.turkcell.customerservice.business.dto.requests.customer.UpdateCustomerRequest;
-import com.turkcell.customerservice.business.dto.responses.customer.AddCustomerResponse;
-import com.turkcell.customerservice.business.dto.responses.customer.GetAllCustomersResponse;
-import com.turkcell.customerservice.business.dto.responses.customer.GetCustomerByIdResponse;
-import com.turkcell.customerservice.business.dto.responses.customer.UpdateCustomerResponse;
+import com.turkcell.customerservice.business.dto.responses.customer.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +49,10 @@ public class CustomerController {
     @GetMapping("getAllCustomers")
     public List<GetAllCustomersResponse> getAllCustomers(){
         return customerService.getAllCustomers();
+    }
+
+    @GetMapping("getDetailed/{id}")
+    public GetCustomerDetailByIdResponse getCustomerDetailById(@PathVariable int id){
+        return customerService.getCustomerDetailById(id);
     }
 }

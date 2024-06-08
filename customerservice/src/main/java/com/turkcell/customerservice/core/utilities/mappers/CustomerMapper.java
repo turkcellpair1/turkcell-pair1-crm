@@ -2,10 +2,7 @@ package com.turkcell.customerservice.core.utilities.mappers;
 
 import com.turkcell.customerservice.business.dto.requests.customer.AddCustomerRequest;
 import com.turkcell.customerservice.business.dto.requests.customer.UpdateCustomerRequest;
-import com.turkcell.customerservice.business.dto.responses.customer.AddCustomerResponse;
-import com.turkcell.customerservice.business.dto.responses.customer.GetAllCustomersResponse;
-import com.turkcell.customerservice.business.dto.responses.customer.GetCustomerByIdResponse;
-import com.turkcell.customerservice.business.dto.responses.customer.UpdateCustomerResponse;
+import com.turkcell.customerservice.business.dto.responses.customer.*;
 import com.turkcell.customerservice.entities.Customer;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -21,8 +18,8 @@ public interface CustomerMapper {
 
     //AddCustomer
     Customer addRequestToCustomer(AddCustomerRequest request);
-    @Mapping(source = "user_id",target = "user_id")
-    @Mapping(source = "status",target = "status")
+//    @Mapping(source = "user_id",target = "user_id")
+//    @Mapping(source = "status",target = "status")
     AddCustomerResponse customerToAddResponse(Customer customer);
 
     //UpdateCustomer
@@ -32,12 +29,17 @@ public interface CustomerMapper {
 
 
     //GetByID
-    @Mapping(source = "user_id",target = "user_id")
-    @Mapping(source = "status",target = "status")
+//    @Mapping(source = "user_id",target = "user_id")
+//    @Mapping(source = "status",target = "status")
     GetCustomerByIdResponse customerByIdToGetResponse(Customer customer);
 
+    //GetDetailById
+//    @Mapping(source = "user_id",target = "user_id")
+//    @Mapping(source = "status",target = "status")
+    GetCustomerDetailByIdResponse customerToGetDetailResponse(Customer customer);
+
     //GetAll
-    @Mapping(source = "user_id",target = "user_id")
-    @Mapping(source = "status",target = "status")
+//    @Mapping(source = "user_id",target = "user_id")
+//    @Mapping(source = "status",target = "status")
     List<GetAllCustomersResponse> customersToGetResponse(List<Customer> customers);
 }
