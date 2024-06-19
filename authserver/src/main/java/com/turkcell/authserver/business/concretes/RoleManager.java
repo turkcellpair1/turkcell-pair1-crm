@@ -12,6 +12,7 @@ public class RoleManager implements RoleService {
     private final RoleRepository roleRepository;
     @Override
     public Role getRole(String role) {
+        // java.util.NoSuchElementException: No value present
         return this.roleRepository.findByRole(role).orElseThrow();
     }
 }

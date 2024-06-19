@@ -1,6 +1,7 @@
 package com.turkcell.authserver.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,9 @@ public class User implements UserDetails {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "email")
+    //jakarta.validation.ConstraintViolationException
+    @Email(message = "Please provide a valid email address")
+    @Column(name = "email",unique = true)
     private String email;
 
     @Column(name = "password")

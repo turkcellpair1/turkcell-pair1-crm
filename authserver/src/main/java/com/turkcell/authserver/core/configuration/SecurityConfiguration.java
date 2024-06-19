@@ -25,6 +25,7 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST = {
             "/api/v1/auth/user/customer/**",
             "/api/v1/auth/token/**",
+            "/api/v1/auth/user/admin/login",
             "/swagger-ui/**",
             "/v2/api-docs",
             "/v3/api-docs",
@@ -38,7 +39,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((req)->
                         req
                                 .requestMatchers(WHITE_LIST).permitAll()
-                                .requestMatchers("/api/v1/auth/user/admin/**").hasAnyAuthority("admin")
+                                .requestMatchers("/api/v1/auth/user/admin/register").hasAnyAuthority("admin")
                                 .anyRequest().authenticated()
                 );
 

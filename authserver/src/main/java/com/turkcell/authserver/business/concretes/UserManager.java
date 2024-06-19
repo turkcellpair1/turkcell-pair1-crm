@@ -17,6 +17,7 @@ public class UserManager implements UserService {
 
     @Override
     public User addUser(User user) {
+        //DataIntegrityViolationException with duplicate email
         return userRepository.save(user);
     }
 
