@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserBusinessRules {
     private final UserRepository userRepository;
     public void checkIfEmailExists(String email) {
-        if(!this.userRepository.existsByEmail(email)) {
+        if(this.userRepository.existsByEmail(email)) {
             throw new BusinessException("Email is already taken!");
         }
     }

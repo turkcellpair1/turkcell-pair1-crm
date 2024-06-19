@@ -1,5 +1,6 @@
 package com.turkcell.authserver.core.exceptions;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,6 +30,15 @@ public class GlobalExceptionHandler {
         return businessExceptionDetails;
     }
 
+    @ExceptionHandler({ConstraintViolationException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public BusinessExceptionDetails handleConstraintViolationException(ConstraintViolationException exception) {
+        BusinessExceptionDetails businessExceptionDetails = new BusinessExceptionDetails();
+        businessExceptionDetails.setDetail("Email is not in correct format");
+        businessExceptionDetails.setStatus("500");
+        return businessExceptionDetails;
+    }
+
     @ExceptionHandler({DataIntegrityViolationException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public BusinessExceptionDetails handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
@@ -37,6 +47,7 @@ public class GlobalExceptionHandler {
         businessExceptionDetails.setStatus("500");
         return businessExceptionDetails;
     }
+
     private String extractEmailFromMessage(String message) {
         String emailPattern = "Key \\(email\\)=\\(([^)]+)\\)";
         Pattern pattern = Pattern.compile(emailPattern);
@@ -47,4 +58,6 @@ public class GlobalExceptionHandler {
         }
         return null;
     }
+
+
 }

@@ -20,7 +20,7 @@ public class UserManager implements UserService {
     @Override
     public User addUser(User user) {
         //DataIntegrityViolationException with duplicate email
-        this.userBusinessRules.checkIfEmailExists(user.getEmail());
+        this.userBusinessRules.checkIfEmailExists(user.getUsername());
         return userRepository.save(user);
     }
 
