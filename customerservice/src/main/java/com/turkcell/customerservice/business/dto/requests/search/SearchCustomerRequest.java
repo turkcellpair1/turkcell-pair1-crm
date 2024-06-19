@@ -1,4 +1,4 @@
-package com.turkcell.customerservice.business.dto.requests.customer;
+package com.turkcell.customerservice.business.dto.requests.search;
 
 import com.turkcell.customerservice.business.rules.validations.ValidBirthDate;
 import com.turkcell.customerservice.business.rules.validations.ValidNationalityId;
@@ -16,7 +16,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchCustomerRequest {
-    @Size(max = 7, message = "Customer id must be max 7 characters")
     private int id;
     @Size(max = 50, message = "First name must be between 3 and 50 characters")
     @Pattern(regexp = "^(?![0-9]+$)[a-zA-ZçÇğĞıİöÖşŞüÜ0-9\\s]*$",
@@ -30,10 +29,9 @@ public class SearchCustomerRequest {
     private String lastName;
     @ValidNationalityId
     private String nationalityId;
-
-    private Account account;
-    private Contact contact;
-    //Todo: Contact tablosu tamamlandıktan sonra devam edilecek
+    private int accountNumber;
+    @Pattern(regexp = "^\\d{11}$", message = "Mobile phone must be exactly 11 digits number")
+    private String gsmNumber;
     //Todo: Order servis ile de bağlantısı gerek
-    private int orderNumer;
+    //private int orderNumber;
 }

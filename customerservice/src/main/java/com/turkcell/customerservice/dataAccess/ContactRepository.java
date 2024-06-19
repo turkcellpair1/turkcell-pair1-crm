@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface ContactRepository extends JpaRepository<Contact,Integer> {
     Optional<Contact> findByIdAndStatusTrue(int id);
+    Optional<Contact> findByMobilePhoneAndStatusTrue(String mobilePhone);
     Optional<Contact> findByCustomerIdAndStatusTrue(int id);
     List<Contact> findByStatusTrue();
 }
