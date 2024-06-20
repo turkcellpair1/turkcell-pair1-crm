@@ -16,28 +16,22 @@ import java.util.List;
 public interface ContactMapper {
     ContactMapper INSTANCE= Mappers.getMapper(ContactMapper.class);
 
-    //AddContact
     @Mapping(source = "customerId",target = "customer.id")
     Contact addRequestToContact(AddContactRequest request);
     @Mapping(source = "customer.id",target = "customerId")
     AddContactResponse contactToAddResonse(Contact contact);
 
-    //UpdateContact
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Contact updateRequestToContact(UpdateContactRequest request);
     @Mapping(source = "customer.id",target = "customerId")
     UpdateContactResponse contactToUpdateResponse(Contact contact);
 
-    //GetById
     @Mapping(source = "customer.id",target = "customerId")
     GetContactByIdResponse contactByIdToGetResponse(Contact contact);
 
-    //GetByCustomerId
     @Mapping(source = "customer.id",target = "customerId")
     GetContactByCustomerIdResponse contactByCustomerIdToGetResponse(Contact contact);
 
-    //GetAll
     @Mapping(source = "customer.id",target = "customerId")
     List<GetAllContactsResponse> contactsToGetResponse(List<Contact> contacts);
-    //Todo: genel maplemede customerId listelerinin dönüş maplerinin kontrolü
 }

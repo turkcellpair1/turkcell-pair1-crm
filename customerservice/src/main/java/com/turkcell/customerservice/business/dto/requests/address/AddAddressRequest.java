@@ -22,6 +22,5 @@ public class AddAddressRequest {
     private String houseNumber;
     @NotBlank(message = "Address description cannot be null")
     private String addressDesc;
-    //@NotBlank(message = "Customer ID cannot be null")
     private int customerId;
 }

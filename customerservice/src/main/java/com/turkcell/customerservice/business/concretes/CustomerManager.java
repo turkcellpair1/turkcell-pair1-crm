@@ -42,7 +42,6 @@ public class CustomerManager implements CustomerService {
     @Override
     public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) {
         customerBusinessRules.checkIfNationalityIdExist(request.getNationalityId());
-        //customerBusinessRules.checkIfUserIdExist(request.getUser_id());
         return customerRepository.findByIdAndStatusTrue(request.getId()).map(customer -> {
             NullAwareBeanUtils.copyNonNullProperties(request,customer);
             return CustomerMapper.INSTANCE.customerToUpdateResponse(customerRepository.save(customer));

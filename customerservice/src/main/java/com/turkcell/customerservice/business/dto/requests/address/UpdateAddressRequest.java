@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateAddressRequest {
-    //@NotBlank(message = "ID cannot be null")
     private int id;
     private String addressName;
     private String city;
@@ -18,5 +17,4 @@ public class UpdateAddressRequest {
     private String street;
     private String houseNumber;
     private String addressDesc;
-    //private int customerId;
 }

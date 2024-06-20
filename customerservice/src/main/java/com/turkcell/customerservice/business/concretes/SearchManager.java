@@ -76,7 +76,6 @@ public class SearchManager implements SearchService {
     }
 
     private String determineUserRole(int userId) {
-        // Kullanıcının rolünü belirlemek için gerekli iş mantığı burada yer alacaktır.
         return "CUSTOMER";
     }
 

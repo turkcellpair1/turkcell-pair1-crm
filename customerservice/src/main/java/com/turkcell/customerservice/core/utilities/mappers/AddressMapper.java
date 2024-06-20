@@ -16,27 +16,22 @@ import java.util.List;
 public interface AddressMapper {
     AddressMapper INSTANCE= Mappers.getMapper(AddressMapper.class);
 
-    //AddAddress
     @Mapping(source = "customerId",target = "customer.id")
     Address addRequestToAddress(AddAddressRequest request);
     @Mapping(source = "customer.id",target = "customerId")
     AddAddressResponse addressToAddResonse(Address address);
 
-    //UpdateAddress
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Address updateRequestToAddress(UpdateAddressRequest request);
     @Mapping(source = "customer.id",target = "customerId")
     UpdateAddressResponse addressToUpdateResponse(Address address);
 
-    //GetById
     @Mapping(source = "customer.id",target = "customerId")
     GetAddressByIdResponse addressByIdToGetResponse(Address address);
 
-    //GetByCustomerId
     @Mapping(source = "customer.id",target = "customerId")
     List<GetAddressesByCustomerIdResponse> addressByCustomerIdToGetResponse(List<Address> addresses);
 
-    //GetAll
     @Mapping(source = "customer.id",target = "customerId")
     List<GetAllAddressesResponse> addressesToGetResponse(List<Address> addresses);
 }

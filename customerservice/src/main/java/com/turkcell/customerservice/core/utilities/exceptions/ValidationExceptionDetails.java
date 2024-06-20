@@ -12,10 +12,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class ValidationExceptionDetails extends ExceptionDetails{
     public ValidationExceptionDetails() {
-        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
         setTitle("Validation Rule Violation");
         setDetail("Validation Problem");
-        //setType(location+"/exceptions/validation");
         setStatus("400");
     }
     private Map<String,String> errors;

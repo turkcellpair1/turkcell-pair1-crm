@@ -22,8 +22,6 @@ public class SearchCustomerRequest {
             message = "First name must contain only letters or both letters and numbers and cannot contain only numbers or special characters")
     private String firstName;
     @Size(max = 50, message = "Last name must be between 3 and 50 characters")
-    /*@Pattern(regexp = "^(?!\\d+$)[a-zA-Z0-9]+$",
-            message = "Last name must contain only letters or both letters and numbers and cannot contain only numbers or special characters")*/
     @Pattern(regexp = "^(?![0-9]+$)[a-zA-ZçÇğĞıİöÖşŞüÜ0-9\\s]*$",
             message = "Last name must contain only letters or both letters and numbers and cannot contain only numbers or special characters")
     private String lastName;
@@ -32,6 +30,4 @@ public class SearchCustomerRequest {
     private int accountNumber;
     @Pattern(regexp = "^\\d{11}$", message = "Mobile phone must be exactly 11 digits number")
     private String gsmNumber;
-    //Todo: Order servis ile de bağlantısı gerek
-    //private int orderNumber;
 }

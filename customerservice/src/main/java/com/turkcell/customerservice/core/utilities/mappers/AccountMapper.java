@@ -16,7 +16,6 @@ import java.util.List;
 public interface AccountMapper {
     AccountMapper INSTANCE= Mappers.getMapper(AccountMapper.class);
 
-    //AddAccount
     @Mapping(source = "customerId", target="customer.id")
     @Mapping(source = "addressId", target="address.id")
     Account addRequestToAccount(AddAccountRequest request);
@@ -24,24 +23,20 @@ public interface AccountMapper {
     @Mapping(source = "address.id", target="addressId")
     AddAccountResponse accountToAddResponse(Account account);
 
-    //UpdateAccount
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Account updateRequestToAccount(UpdateAccountRequest request);
     @Mapping(source = "customer.id", target="customerId")
     @Mapping(source = "address.id", target="addressId")
     UpdateAccountResponse accountToUpdateResponse(Account account);
 
-    //GetById
     @Mapping(source = "customer.id",target = "customerId")
     @Mapping(source = "address.id", target="addressId")
     GetAccountByIdResponse accountByIdToGetResponse(Account account);
 
-    //GetByCustomerId
     @Mapping(source = "customer.id",target = "customerId")
     @Mapping(source = "address.id", target="addressId")
     List<GetAccountByCustomerIdResponse> accountByCustomerIdToGetResponse(List<Account> accounts);
 
-    //GetAll
     @Mapping(source = "customer.id",target = "customerId")
     @Mapping(source = "address.id", target="addressId")
     List<GetAllAccountsResponse> accountsToGetResponse(List<Account> accounts);

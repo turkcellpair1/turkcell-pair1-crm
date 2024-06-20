@@ -27,8 +27,6 @@ public class AddCustomerRequest {
     private String middleName;
     @NotBlank(message = "Last name cannot be null")
     @Size(min = 3, max = 50, message = "Last name must be between 3 and 50 characters")
-    /*@Pattern(regexp = "^(?!\\d+$)[a-zA-Z0-9]+$",
-            message = "Last name must contain only letters or both letters and numbers and cannot contain only numbers or special characters")*/
     @Pattern(regexp = "^(?![0-9]+$)[a-zA-ZçÇğĞıİöÖşŞüÜ0-9\\s]*$",
             message = "Last name must contain only letters or both letters and numbers and cannot contain only numbers or special characters")
     private String lastName;

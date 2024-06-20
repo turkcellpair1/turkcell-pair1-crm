@@ -36,10 +36,7 @@ public class AccountManager implements AccountService {
         }
 
         Account account=AccountMapper.INSTANCE.addRequestToAccount(request);
-        /*long timestamp = Instant.now().toEpochMilli();
-        int randomSuffix = random.nextInt(1000);
 
-        String uniqueNumber = timestamp + String.format("%03d", randomSuffix);*/
         long timestamp = Instant.now().toEpochMilli();
         int randomSuffix = random.nextInt(1000);
         int truncatedTimestamp = (int) (timestamp % 1000000000L);
@@ -71,7 +68,6 @@ public class AccountManager implements AccountService {
 
     @Override
     public String deleteAccountById(int id) {
-        /*Todo: Kullanıcının, ”Yes” butonuna tıklaması durumunda, sistem ilgili fatura hesabına bağlı bir ürün olup olmadığını sorgulamalıdır. Eğer ilgili fatura hesabına bağlı bir ürün var ise kullanıcıya “There are product/products connected to the billing account“ hata mesajı gösterilmelidir. Bu durumda fatura hesabı için silme işlemi gerçekleştirilmemelidir*/
         Account account= accountRepository.findByIdAndStatusTrue(id).orElseThrow(() -> new BusinessException("No account was found for this id. Transaction failed."));
         account.setStatus(false);
         accountRepository.save(account);
