@@ -23,7 +23,8 @@ public class SecurityConfiguration {
     private final BaseSecurityService baseSecurityService;
 
     private static final String[] WHITE_LIST = {
-            "/api/v1/auth/user/customer/**",
+            "/api/v1/auth/user/customer/login",
+            "/api/v1/auth/user/customer/register",
             "/api/v1/auth/token/**",
             "/api/v1/auth/user/admin/login",
             "/swagger-ui/**",
