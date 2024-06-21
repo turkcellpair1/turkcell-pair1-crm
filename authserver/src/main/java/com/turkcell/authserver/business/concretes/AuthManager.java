@@ -49,12 +49,11 @@ public class AuthManager implements AuthService {
 
     @Override
     public ResponseLoginUser loginUser(RequestLoginUser requestLoginUser) {
-        // TODO: Handle Exception.
+
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(requestLoginUser.getEmail(), requestLoginUser.getPassword()));
 
-        if (!authentication.isAuthenticated())
-            throw new RuntimeException("E-posta ya da şifre yanlış");
+
         UserDetails user = userService.loadUserByUsername(requestLoginUser.getEmail());
         Map<String, Object> claims = new HashMap<>();
         List<String> roles = user
@@ -74,8 +73,7 @@ public class AuthManager implements AuthService {
     @Override
     public ResponseUserFromToken userFromToken(RequestUserFromToken requestUserFromToken) {
 
-        if (!jwtService.validateToken(requestUserFromToken.getToken()))
-            throw new RuntimeException("E-posta ya da şifre yanlış");
+
 
         String token = requestUserFromToken.getToken();
 
