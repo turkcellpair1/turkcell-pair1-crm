@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.security.SignatureException;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,11 +24,19 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({BadCredentialsException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public BusinessExceptionDetails handleBadCredentialsException(BadCredentialsException exception) {
         BusinessExceptionDetails businessExceptionDetails = new BusinessExceptionDetails();
         businessExceptionDetails.setDetail("Email or password is wrong");
-        businessExceptionDetails.setStatus("500");
+        businessExceptionDetails.setStatus("403");
+        return businessExceptionDetails;
+    }
+    @ExceptionHandler(SignatureException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public BusinessExceptionDetails handleSignatureException(SignatureException exception) {
+        BusinessExceptionDetails businessExceptionDetails = new BusinessExceptionDetails();
+        businessExceptionDetails.setDetail("Invalid JWT signature: " + exception.getMessage());
+        businessExceptionDetails.setStatus(String.valueOf(HttpStatus.FORBIDDEN.value()));
         return businessExceptionDetails;
     }
 
